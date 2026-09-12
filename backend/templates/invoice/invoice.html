@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="color-scheme"
+    content="light"
+  />
+
+  <meta
+    name="supported-color-schemes"
+    content="light"
+  />
+
+  <title>Your Invoice from InvoiceFlow</title>
+
+  <style>
+    {{CSS}}
+  </style>
+</head>
+
+<body>
+
+  <!-- Preheader -->
+  <div class="preheader">
+    Your InvoiceFlow invoice is ready to view.
+  </div>
+
+  <table class="email-wrapper">
+    <tr>
+      <td class="wrapper-cell">
+
+        <!-- Main Container -->
+        <table class="email-container">
+
+          <!-- Header -->
+          <tr>
+            <td class="header">
+
+              <table class="header-table">
+                <tr>
+
+                  <td class="brand-cell">
+                    <div class="brand">
+                      Invoice<span>Flow</span>
+                    </div>
+                  </td>
+
+                  <td class="status-cell">
+                    <span class="status-badge">
+                      ✓ Invoice Ready
+                    </span>
+                  </td>
+
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+
+          <!-- Content -->
+          <tr>
+            <td class="content">
+
+              <!-- Greeting -->
+              <p class="greeting">
+                Hello {{CUSTOMER_NAME}},
+              </p>
+
+              <h1>
+                Your invoice is ready.
+              </h1>
+
+              <p class="description">
+                Your invoice has been successfully generated
+                and is ready for you to view.
+              </p>
+
+
+              <!-- Invoice Card -->
+              <table class="invoice-card">
+
+                <tr>
+                  <td class="invoice-card-content">
+
+                    <table class="details-table">
+
+                      <tr>
+
+                        <!-- Invoice ID -->
+                        <td class="detail-column">
+                          <div class="detail-label">
+                            Invoice ID
+                          </div>
+
+                          <div class="detail-value invoice-id">
+                            {{INVOICE_ID}}
+                          </div>
+                        </td>
+
+
+                        <!-- Status -->
+                        <td class="detail-column">
+                          <div class="detail-label">
+                            Status
+                          </div>
+
+                          <div class="completed">
+                            Completed
+                          </div>
+                        </td>
+
+                      </tr>
+
+
+                      <!-- Total -->
+                      <tr>
+                        <td
+                          colspan="2"
+                          class="total-section"
+                        >
+
+                          <div class="detail-label">
+                            Total Amount
+                          </div>
+
+                          <div class="total">
+                            {{TOTAL}}
+                          </div>
+
+                        </td>
+                      </tr>
+
+                    </table>
+
+                  </td>
+                </tr>
+
+              </table>
+
+
+              <!-- CTA -->
+              <table class="cta-table">
+                <tr>
+                  <td align="center">
+
+                    <a
+                      href="{{PDF_URL}}"
+                      target="_blank"
+                      class="cta-button"
+                    >
+                      View Invoice
+                    </a>
+
+                  </td>
+                </tr>
+              </table>
+
+
+              <!-- Fallback Link -->
+              <p class="fallback-text">
+                If the button doesn't work, copy and paste
+                this link into your browser:
+              </p>
+
+              <p class="fallback-link">
+                <a
+                  href="{{PDF_URL}}"
+                  target="_blank"
+                >
+                  {{PDF_URL}}
+                </a>
+              </p>
+
+            </td>
+          </tr>
+
+
+          <!-- Footer -->
+          <tr>
+            <td class="footer">
+
+              <p class="footer-main">
+                Thank you for using InvoiceFlow.
+              </p>
+
+              <p class="footer-secondary">
+                This is an automated email. Please do not
+                reply to this message.
+              </p>
+
+            </td>
+          </tr>
+
+        </table>
+
+
+        <!-- Copyright -->
+        <table class="copyright-container">
+          <tr>
+            <td class="copyright">
+              © {{YEAR}} InvoiceFlow
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
