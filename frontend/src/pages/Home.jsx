@@ -6,6 +6,7 @@ import InvoiceItems from '@/components/InvoiceItems';
 import InvoiceSummary from '@/components/InvoiceSummary';
 import ProcessingState from '@/components/ProcessingState';
 import SuccessState from '@/components/SuccessState';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -34,10 +35,28 @@ const Home = () => {
         }
     })
     const { handleSubmit } = methods;
+    const [successMessage,setSuccessMessage] = useState(null)
+    const [invoiceId,setInvoiceId] = useState(null)
+    const [status,setStatus] = useState(null)
 
-
-    const onSubmit = (data)=>{
-        console.log("data",data)
+    const onSubmit = async(data)=>{
+        try {
+            setPreviewView("processing")
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/invoices/create-invoice`,data)
+            if(response?.data.success){
+                setPreviewView("success")
+                const message = response?.data?.message
+                setSuccessMessage(message)
+                const invoiceId = response?.data?.invoiceId
+                setInvoiceId(invoiceId)
+                const status = response?.data?.status
+                setStatus(status)
+                methods.reset()
+            }
+        } catch (error) {
+            console.error("failed to create invoice",error)
+            setPreviewView("error")
+        }
     }
 
     return (
@@ -68,7 +87,7 @@ const Home = () => {
                         </FormProvider>
                     )}
                     {previewView === "processing" && <ProcessingState />}
-                    {previewView === "success" && <SuccessState />}
+                    {previewView === "success" && <SuccessState invoiceId={invoiceId} status={status} message={successMessage} setPreviewView={setPreviewView} />}
                     {previewView === "error" && <ErrorState />}
                 </div>
             </main>

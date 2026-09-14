@@ -80,7 +80,7 @@ const CreateInvoice = async (req, res) => {
     }
     return res.status(201).json({
         success: true,
-        message:"Invoice created successfully. It will be processed and sent to your email.",
+        message:"Invoice created successfully. Your customer will receive the invoice within 10 minutes. If the invoice is not received, please contact us at help@invoiceflow.com with your invoice number.",
         invoiceId: invoice._id,
         status: invoice.status,
       });
